@@ -64,7 +64,7 @@ class Market1501(object):
             raise RuntimeError("'{}' is not available".format(self.gallery_dir))
 
     def _process_dir(self, dir_path, relabel=False):
-        img_paths = glob.glob(osp.join(dir_path, '*.jpg'))
+        img_paths = glob.glob(osp.join(dir_path, '*.jpg'))  #找到所有以jpg
         pattern = re.compile(r'([-\d]+)_c(\d)')
 
         pid_container = set()
@@ -87,6 +87,18 @@ class Market1501(object):
         num_pids = len(pid_container)
         num_imgs = len(dataset)
         return dataset, num_pids, num_imgs
+
+"""Create dataset"""
+
+__img_factory = {
+    'market1501': Market1501,
+}
+
+def init_img_dataset(name, **kwargs):
+    if name not in __img_factory.keys():
+        raise KeyError("Invalid dataset, got '{}', but expected to be one of {}".format(name, __img_factory.keys()))
+    return __img_factory[name](**kwargs)
+
 
 if __name__ == '__main__':
     data = Market1501(root='/root/FindPeople/ReID/data')
