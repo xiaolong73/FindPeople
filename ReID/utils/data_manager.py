@@ -87,3 +87,6 @@ class Market1501(object):
         num_pids = len(pid_container)
         num_imgs = len(dataset)
         return dataset, num_pids, num_imgs
+
+if __name__ == '__main__':
+    data = Market1501(root='/root/FindPeople/ReID/data')
