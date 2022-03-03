@@ -64,7 +64,7 @@ parser.add_argument('--num-instances', type=int, default=4,
 parser.add_argument('--htri-only', action='store_true', default=False,
                     help="if this is True, only htri loss is used in training")
 # Architecture
-parser.add_argument('-a', '--arch', type=str, default='resnet50', choices=models.get_names())
+parser.add_argument('-a', '--arch', type=str, default='resnet50')
 # Miscs
 parser.add_argument('--print-freq', type=int, default=10, help="print frequency")
 parser.add_argument('--seed', type=int, default=1, help="manual seed")
