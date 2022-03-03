@@ -12,7 +12,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 from torch.optim import lr_scheduler
 
-from ReID.utils import data_manager
+from utils import data_manager
 from utils.dataset_loader import ImageDataset
 import utils.transforms as T
 import models
