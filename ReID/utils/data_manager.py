@@ -10,7 +10,7 @@ import os.path as osp
 from scipy.io import loadmat
 import numpy as np
 import h5py
-from scipy.misc import imsave
+from imageio import imwrite
 
 from utils import mkdir_if_missing, write_json, read_json
 
@@ -244,7 +244,7 @@ class CUHK03(object):
                 viewid = 1 if imgid < 5 else 2
                 img_name = '{:01d}_{:03d}_{:01d}_{:02d}.png'.format(campid + 1, pid + 1, viewid, imgid + 1)
                 img_path = osp.join(save_dir, img_name)
-                imsave(img_path, img)
+                imwrite(img_path, img)
                 img_paths.append(img_path)
             return img_paths
 
