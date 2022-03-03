@@ -11,7 +11,7 @@ import numpy as np
 import h5py
 from imageio import imwrite
 
-from utils import mkdir_if_missing, write_json, read_json
+from utils.utils import mkdir_if_missing, write_json, read_json
 
 """Image ReID"""
 
@@ -1104,7 +1104,7 @@ __vid_factory = {
 
 
 def get_names():
-    return __img_factory.keys() + __vid_factory.keys()
+    return list(__img_factory.keys()) + list(__vid_factory.keys())
 
 
 def init_img_dataset(name, **kwargs):
