@@ -3,6 +3,8 @@ import time
 from sys import platform
 
 # For Yolov3SPP
+import numpy as np
+
 from Yolov3SPP.models import *
 from Yolov3SPP.build_utils.datasets import *
 from Yolov3SPP.build_utils.utils import *
@@ -13,3 +15,165 @@ from ReID.data.transforms import build_transforms
 from ReID.modeling import build_model
 from ReID.config import cfg as reidCfg
 
+
+def parse_data_cfg(path):
+    """
+    解析数据集的配置文件
+    # 类别数目
+    classes= 1
+    # 训练集ID文件路径
+    train = Yolov3SPP/data/my_train_data.txt
+    # 验证集ID文件路径
+    valid = Yolov3SPP/data/my_val_data.txt
+    # 类别名称文件路径
+    names = Yolov3SPP/data/my_data_label.names
+    backup=backup/
+    eval=coco
+    :param path: 'Yolov3SPP/data/my_data.data'
+    :return:
+    """
+    # Parses the data configuration file
+    options = dict()
+    with open(path, 'r') as fp:
+        lines = fp.readlines() # 返回列表，包含所有的行。
+
+    for line in lines: # 'classes= 1\n'
+        line = line.strip()
+        if line == '' or line.startswith('#'): # 去掉空白行和以#开头的注释行
+            continue
+        key, val = line.split('=') # 按等号分割 key:'classes'  value:' 1'
+        options[key.strip()] = val.strip()
+
+    return options
+
+def detect(cfg,                     # YoloV3
+           data,
+           weights,
+           images="data/samples",   # input folder
+           output='output',         # output folder
+           fourcc="mp4v",           # video codec
+           img_size=512,
+           conf_thres=0.5,
+           nms_thres=0.5,
+           dist_thres=1.0,
+           save_txt=False,
+           save_img=True):
+
+    # Initialize
+    device = torch_utils.select_device(force_cpu=False)
+    torch.backends.cudnn.benchmark = False  # set False for reproducible results
+    if os.path.exists(output):
+        shutil.rmtree(output)  # delete output folder
+    os.makedirs(output)  # make new output folder
+
+    ############# 行人重识别模型初始化 #############
+    _, query_loader, num_query, num_classes = make_data_loader(reidCfg)
+    reidModel = build_model(reidCfg, num_classes)
+    reidModel.load_param(reidCfg.TEST.WEIGHT)
+    reidModel.to(device).eval()
+
+    query_feats = []
+    query_pids = []
+
+    for i, batch in enumerate(query_loader):
+        with torch.no_grad():
+            img, pid, camid = batch
+            img = img.to(device)
+            # 一共2张待查询图片，每张图片特征向量2048 torch.Size([2, 2048])
+            feat = reidModel(img)
+            query_feats.append(feat)
+            # extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
+            query_pids.extend(np.asarray(pid))
+
+            query_feats = torch.cat(query_feats, dim=0) # torch.Size([2, 2048])
+            print("The query feature is normalized")
+            query_feats = torch.nn.functional.normalize(query_feats, dim=1, p=2)  # 计算出查询图片的特征向量
+
+
+    ############# 行人检测模型初始化 #############
+    model = Darknet(cfg, img_size)
+
+    # Load weights
+    model.load_state_dict(torch.load(weights, map_location=device)["model"])
+    model.to(device)
+
+    # Eval mode
+    model.to(device).eval()
+    # Half precision
+    opt.half = opt.half and device.type != 'cpu'  # half precision only supported on CUDA
+    if opt.half:
+        model.half()
+
+    # Set Dataloader
+    vid_path, vid_writer = None, None
+    if opt.webcam:
+        save_images = False
+        dataloader = LoadWebcam(img_size=img_size, half=opt.half)
+    else:
+        dataloader = LoadImages(images, img_size=img_size, half=opt.half)
+
+
+    # Get classes and colors
+    # parse_data_cfg(data)['name']: 得到类别名称文件路径 names = Yolov3SPP/data/my_data_label.names
+    classes = load_classes(parse_data_cfg(data)['names']) # 得到类别名列表: ['person']
+    # 对于每种类别随机使用一种颜色画框
+    colors = [[random.randint(0, 255) for _ in range(3)] for _ in range(len(classes))]
+
+
+    # Run inference
+    t0 = time.time()
+    for i, (path, img, img0, vid_cap) in enumerate(dataloader):
+        t = time.time()
+        save_path = str(Path(output) / Path(path).name) # 保存的路径
+
+        # Get detection shape: (3, 512, 512)
+        img = torch.from_numpy(img).unsqueeze(0).to(device) # torch.Size([1, 3, 512, 512])
+        pred, _ = model(img)
+        det = non_max_suppression(pred.float(), conf_thres, nms_thres)[0] # torch.Size([5, 7])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if __name__ == '__main__':
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--cfg', type=str, default='Yolov3SPP/cfg/my_yolov3.cfg', help="模型配置文件路径")
+        parser.add_argument('--data', type=str, default='Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
+        parser.add_argument('--weights', type=str, default='weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
+        parser.add_argument('--images', type=str, default='data/samples', help='需要进行检测的图片文件夹')
+        parser.add_argument('-q', '--query', default=r'query', help='查询图片的读取路径.')
+        parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
+        parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
+        parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
+        parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')
+        parser.add_argument('--fourcc', type=str, default='mp4v',
+                            help='fourcc output video codec (verify ffmpeg support)')
+        parser.add_argument('--output', type=str, default='output', help='检测后的图片或视频保存的路径')
+        parser.add_argument('--half', default=False, help='是否采用半精度FP16进行推理')
+        parser.add_argument('--webcam', default=False, help='是否使用摄像头进行检测')
+        opt = parser.parse_args()
+        print(opt)
+
+        with torch.no_grad():
+            detect(opt.cfg,
+                   opt.data,
+                   opt.weights,
+                   images=opt.images,
+                   img_size=opt.img_size,
+                   conf_thres=opt.conf_thres,
+                   nms_thres=opt.nms_thres,
+                   dist_thres=opt.dist_thres,
+                   fourcc=opt.fourcc,
+                   output=opt.output)

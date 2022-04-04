@@ -23,6 +23,18 @@ matplotlib.rc('font', **{'size': 11})
 cv2.setNumThreads(0)
 
 
+def load_classes(path):
+    """
+    根据类别名称文件解析出类别，存储在列表中
+    :param path: 类别名称文件路径
+    :return: 得到类别名列表: ['person', 'bicycle'...]
+    """
+    # Loads *.names file at 'path'
+    with open(path, 'r') as f:
+        names = f.read().split('\n')
+    return list(filter(None, names))  # filter removes empty strings (such as last line)
+
+
 def init_seeds(seed=0):
     random.seed(seed)
     np.random.seed(seed)
