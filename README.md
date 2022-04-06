@@ -19,4 +19,4 @@
 行人检测算法用的是[Yolov3SPP](https://github.com/WZMIAOMIAO/deep-learning-for-image-processing/tree/master/pytorch_object_detection/yolov3_spp)
 
 #### 2. 行人重识别部分
-行人重识别算法用的是[Reid-Strong-Baseline]((https://github.com/michuanhaohao/reid-strong-baseline))
+行人重识别算法用的是[Reid-Strong-Baseline](https://github.com/michuanhaohao/reid-strong-baseline)
