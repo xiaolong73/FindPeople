@@ -2,7 +2,7 @@
 
 #### 文件结构
 ```text
-├── cfg: 配置文件目录
+├──── cfg: 配置文件目录
   │    ├── hyp.yaml: 训练网络的相关超参数
   │    └── yolov3-spp.cfg: yolov3-spp网络结构配置 
   │ 
