@@ -232,33 +232,33 @@ def detect(cfg,                     # YoloV3
     print('Done. (%.3fs)' % (time.time() - t0))
 
 
-    if __name__ == '__main__':
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--cfg', type=str, default='Yolov3SPP/cfg/my_yolov3.cfg', help="模型配置文件路径")
-        parser.add_argument('--data', type=str, default='Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
-        parser.add_argument('--weights', type=str, default='weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
-        parser.add_argument('--images', type=str, default='data/samples', help='需要进行检测的图片文件夹')
-        parser.add_argument('-q', '--query', default=r'query', help='查询图片的读取路径.')
-        parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
-        parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
-        parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
-        parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')
-        parser.add_argument('--fourcc', type=str, default='mp4v',
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--cfg', type=str, default='Yolov3SPP/cfg/my_yolov3.cfg', help="模型配置文件路径")
+    parser.add_argument('--data', type=str, default='Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
+    parser.add_argument('--weights', type=str, default='weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
+    parser.add_argument('--images', type=str, default='data/samples', help='需要进行检测的图片文件夹')
+    parser.add_argument('-q', '--query', default=r'query', help='查询图片的读取路径.')
+    parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
+    parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
+    parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
+    parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')
+    parser.add_argument('--fourcc', type=str, default='mp4v',
                             help='fourcc output video codec (verify ffmpeg support)')
-        parser.add_argument('--output', type=str, default='output', help='检测后的图片或视频保存的路径')
-        parser.add_argument('--half', default=False, help='是否采用半精度FP16进行推理')
-        parser.add_argument('--webcam', default=False, help='是否使用摄像头进行检测')
-        opt = parser.parse_args()
-        print(opt)
+    parser.add_argument('--output', type=str, default='output', help='检测后的图片或视频保存的路径')
+    parser.add_argument('--half', default=False, help='是否采用半精度FP16进行推理')
+    parser.add_argument('--webcam', default=False, help='是否使用摄像头进行检测')
+    opt = parser.parse_args()
+    print(opt)
 
-        with torch.no_grad():
-            detect(opt.cfg,
-                   opt.data,
-                   opt.weights,
-                   images=opt.images,
-                   img_size=opt.img_size,
-                   conf_thres=opt.conf_thres,
-                   nms_thres=opt.nms_thres,
-                   dist_thres=opt.dist_thres,
-                   fourcc=opt.fourcc,
-                   output=opt.output)
+    with torch.no_grad():
+        detect(opt.cfg,
+                opt.data,
+                opt.weights,
+                images=opt.images,
+                img_size=opt.img_size,
+                conf_thres=opt.conf_thres,
+                nms_thres=opt.nms_thres,
+                dist_thres=opt.dist_thres,
+                fourcc=opt.fourcc,
+                output=opt.output)
