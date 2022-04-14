@@ -59,7 +59,7 @@ def detect(cfg,                     # YoloV3
            save_img=True):
 
     # Initialize
-    device = torch_utils.select_device(force_cpu=False)
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     torch.backends.cudnn.benchmark = False  # set False for reproducible results
     if os.path.exists(output):
         shutil.rmtree(output)  # delete output folder
