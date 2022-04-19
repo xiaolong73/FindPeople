@@ -12,14 +12,14 @@ import torch
 from torch.backends import cudnn
 
 sys.path.append('.')
-from ReID.config import cfg
-from ReID.data import make_data_loader
-from ReID.engine.trainer import do_train, do_train_with_center
-from ReID.modeling import build_model
-from ReID.layers import make_loss, make_loss_with_center
-from ReID.solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
+from ..config import cfg
+from ..data import make_data_loader
+from ..engine.trainer import do_train, do_train_with_center
+from ..modeling import build_model
+from ..layers import make_loss, make_loss_with_center
+from ..solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
 
-from ReID.utils.logger import setup_logger
+from ..utils.logger import setup_logger
 
 
 def train(cfg):
