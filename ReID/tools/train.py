@@ -15,14 +15,14 @@ sys.path.append('/root/FindPeople/ReID')
 from torch.backends import cudnn
 
 sys.path.append('.')
-from config import cfg
-from data import make_data_loader
-from engine.trainer import do_train, do_train_with_center
-from modeling import build_model
-from layers import make_loss, make_loss_with_center
-from solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
+from ReID.config import cfg
+from ReID.data import make_data_loader
+from ReID.engine.trainer import do_train, do_train_with_center
+from ReID.modeling import build_model
+from ReID.layers import make_loss, make_loss_with_center
+from ReID.solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
 
-from utils.logger import setup_logger
+from ReID.utils.logger import setup_logger
 
 
 def train(cfg):
@@ -122,7 +122,7 @@ def train(cfg):
 def main():
     parser = argparse.ArgumentParser(description="ReID Baseline Training")
     parser.add_argument(
-        "--config_file", default="", help="path to config file", type=str
+        "--config_file", default="FindPeople/ReID/configs/softmax_triplet_with_center.yml", help="path to config file", type=str
     )
     parser.add_argument("opts", help="Modify config options using the command-line", default=None,
                         nargs=argparse.REMAINDER)

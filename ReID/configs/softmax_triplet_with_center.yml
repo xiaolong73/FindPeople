@@ -19,7 +19,7 @@ DATASETS:
   NAMES: ('market1501')
 
 DATALOADER:
-  SAMPLER: 'softmax_triplet_with_center'
+  SAMPLER: 'softmax_triplet'
   NUM_INSTANCE: 4
   NUM_WORKERS: 8
 
@@ -62,6 +62,6 @@ TEST:
   NECK_FEAT: 'after'
   FEAT_NORM: 'yes'
 
-OUTPUT_DIR: "ReID/weights/output"
+OUTPUT_DIR: "FindPeople/ReID/weights/output"
 
 
