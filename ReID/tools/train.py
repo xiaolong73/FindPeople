@@ -9,6 +9,9 @@ import os
 import sys
 import torch
 
+sys.path.append('/root/FindPeople/')
+sys.path.append('/root/FindPeople/ReID')
+
 from torch.backends import cudnn
 
 sys.path.append('.')
