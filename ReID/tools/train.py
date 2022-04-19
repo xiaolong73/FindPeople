@@ -12,14 +12,14 @@ import torch
 from torch.backends import cudnn
 
 sys.path.append('.')
-from ..config import cfg
-from ..data import make_data_loader
-from ..engine.trainer import do_train, do_train_with_center
-from ..modeling import build_model
-from ..layers import make_loss, make_loss_with_center
-from ..solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
+from config import cfg
+from data import make_data_loader
+from engine.trainer import do_train, do_train_with_center
+from modeling import build_model
+from layers import make_loss, make_loss_with_center
+from solver import make_optimizer, make_optimizer_with_center, WarmupMultiStepLR
 
-from ..utils.logger import setup_logger
+from utils.logger import setup_logger
 
 
 def train(cfg):
