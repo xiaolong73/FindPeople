@@ -87,10 +87,9 @@ def detect(cfg,                     # YoloV3
             # extend() 函数用于在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）。
             query_pids.extend(np.asarray(pid))
 
-            query_feats = torch.cat(query_feats, dim=0) # torch.Size([2, 2048])
-            print("The query feature is normalized")
-            query_feats = torch.nn.functional.normalize(query_feats, dim=1, p=2)  # 计算出查询图片的特征向量
-
+        query_feats = torch.cat(query_feats, dim=0) # torch.Size([2, 2048])
+        print("The query feature is normalized")
+        query_feats = torch.nn.functional.normalize(query_feats, dim=1, p=2)  # 计算出查询图片的特征向量
 
     ############# 行人检测模型初始化 #############
     model = Darknet(cfg, img_size)
