@@ -247,7 +247,8 @@ if __name__ == '__main__':
     parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
     parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')
     parser.add_argument('--fourcc', type=str, default='mp4v',
-                            help='fourcc output video codec (verify ffmpeg support)')
+                            help='fourcc output video codec'
+                                 ' (verify ffmpeg support)')
     parser.add_argument('--output', type=str, default='output', help='检测后的图片或视频保存的路径')
     parser.add_argument('--half', default=False, help='是否采用半精度FP16进行推理')
     parser.add_argument('--webcam', default=False, help='是否使用摄像头进行检测')
