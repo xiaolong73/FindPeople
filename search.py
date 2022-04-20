@@ -1,9 +1,12 @@
 import argparse
-import time
 from sys import platform
+import sys
+
+sys.path.append('/root/FindPeople/')
+sys.path.append('/root/FindPeople/ReID')
+sys.path.append('/root/FindPeople/Yolov3SPP')
 
 # For Yolov3SPP
-import numpy as np
 from Yolov3SPP.models import *
 from Yolov3SPP.build_utils.datasets import *
 from Yolov3SPP.build_utils.utils import *

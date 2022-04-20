@@ -62,6 +62,6 @@ TEST:
   NECK_FEAT: 'after'
   FEAT_NORM: 'yes'
 
-OUTPUT_DIR: "FindPeople/ReID/weights/output"
+OUTPUT_DIR: "/root/FindPeople/ReID/weights/output"
 
 
