@@ -52,7 +52,7 @@ def detect(cfg,                     # YoloV3
            data,
            weights,
            images="/root/FindPeople/data/samples",   # input folder
-           output='output',         # output folder
+           output='/root/FindPeople/output',         # output folder
            fourcc="mp4v",           # video codec
            img_size=512,
            conf_thres=0.5,
