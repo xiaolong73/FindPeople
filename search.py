@@ -241,7 +241,7 @@ if __name__ == '__main__':
     parser.add_argument('--data', type=str, default='/root/FindPeople/Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
     parser.add_argument('--weights', type=str, default='/root/FindPeople/weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
     parser.add_argument('--images', type=str, default='/root/FindPeople/data/samples', help='需要进行检测的图片文件夹')
-    parser.add_argument('-q', '--query', default=r'query', help='查询图片的读取路径.')
+    parser.add_argument('-q', '--query', default=r'/root/FindPeople/query', help='查询图片的读取路径.')
     parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
     parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
     parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')

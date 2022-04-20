@@ -26,7 +26,7 @@ _C.MODEL.NAME = 'resnet50'
 # Last stride of backbone
 _C.MODEL.LAST_STRIDE = 1
 # Path to pretrained model of backbone
-_C.MODEL.PRETRAIN_PATH = ''
+_C.MODEL.PRETRAIN_PATH = '/root/FindPeople/weights/resnet50-19c8e357.pth'
 # Use ImageNet pretrained model to initialize backbone or use self trained model to initialize the whole model
 # Options: 'imagenet' or 'self'
 _C.MODEL.PRETRAIN_CHOICE = 'imagenet'
@@ -158,4 +158,4 @@ _C.TEST.FEAT_NORM = 'yes'
 # Misc options
 # ---------------------------------------------------------------------------- #
 # Path to checkpoint and saved log of trained model
-_C.OUTPUT_DIR = "FindPeople/ReID/weights/output"
+_C.OUTPUT_DIR = "/root/FindPeople/ReID/weights/output"
