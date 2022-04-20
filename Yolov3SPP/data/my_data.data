@@ -1,4 +1,4 @@
 classes= 1
-train  = Yolov3SPP/data/my_train_data.txt
-valid  = Yolov3SPP/data/my_val_data.txt
-names = Yolov3SPP/data/my_data_label.names
+train  = /root/FindPeople/Yolov3SPP/data/my_train_data.txt
+valid  = /root/FindPeople/Yolov3SPP/data/my_val_data.txt
+names = /root/FindPeople/Yolov3SPP/data/my_data_label.names

@@ -24,14 +24,14 @@ def parse_data_cfg(path):
     # 类别数目
     classes= 1
     # 训练集ID文件路径
-    train = Yolov3SPP/data/my_train_data.txt
+    train = /root/FindPeople/Yolov3SPP/Yolov3SPP/data/my_train_data.txt
     # 验证集ID文件路径
-    valid = Yolov3SPP/data/my_val_data.txt
+    valid = /root/FindPeople/Yolov3SPP/Yolov3SPP/data/my_val_data.txt
     # 类别名称文件路径
-    names = Yolov3SPP/data/my_data_label.names
+    names = /root/FindPeople/Yolov3SPP/data/my_data_label.names
     backup=backup/
     eval=coco
-    :param path: 'Yolov3SPP/data/my_data.data'
+    :param path: '/root/FindPeople/Yolov3SPP/data/my_data.data'
     :return:
     """
     # Parses the data configuration file
@@ -51,7 +51,7 @@ def parse_data_cfg(path):
 def detect(cfg,                     # YoloV3
            data,
            weights,
-           images="data/samples",   # input folder
+           images="/root/FindPeople/data/samples",   # input folder
            output='output',         # output folder
            fourcc="mp4v",           # video codec
            img_size=512,
@@ -237,10 +237,10 @@ def detect(cfg,                     # YoloV3
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--cfg', type=str, default='Yolov3SPP/cfg/my_yolov3.cfg', help="模型配置文件路径")
-    parser.add_argument('--data', type=str, default='Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
-    parser.add_argument('--weights', type=str, default='weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
-    parser.add_argument('--images', type=str, default='data/samples', help='需要进行检测的图片文件夹')
+    parser.add_argument('--cfg', type=str, default='/root/FindPeople/Yolov3SPP/cfg/my_yolov3.cfg', help="模型配置文件路径")
+    parser.add_argument('--data', type=str, default='/root/FindPeople/Yolov3SPP/data/my_data.data', help="数据集配置文件所在路径")
+    parser.add_argument('--weights', type=str, default='/root/FindPeople/weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
+    parser.add_argument('--images', type=str, default='/root/FindPeople/data/samples', help='需要进行检测的图片文件夹')
     parser.add_argument('-q', '--query', default=r'query', help='查询图片的读取路径.')
     parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
     parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
