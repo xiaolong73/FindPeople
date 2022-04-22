@@ -163,10 +163,10 @@ def detect(cfg,                     # YoloV3
                     ymin = int(xyxy[1])
                     xmax = int(xyxy[2])
                     ymax = int(xyxy[3])
-                    xmin = xi
-                    ymin = yi
-                    xmax = xa
-                    ymax = ya
+                    # xmin = xi
+                    # ymin = yi
+                    # xmax = xa
+                    # ymax = ya
                     w = xmax - xmin # 233
                     h = ymax - ymin # 602
                     # 如果检测到的行人太小了，感觉意义也不大
