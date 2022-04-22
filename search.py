@@ -149,7 +149,7 @@ def detect(cfg,                     # YoloV3
             count = 0
             gallery_img = []
             gallery_loc = []
-            for xi, yi, xa, ya, conf, cls_conf, cls in det: # 对于最后的预测框进行遍历
+            for *xyxy, conf, cls in det: # 对于最后的预测框进行遍历
                 # *xyxy: 对于原图来说的左上角右下角坐标: [tensor(349.), tensor(26.), tensor(468.), tensor(341.)]
                 if save_txt:  # Write to file
                     with open(save_path + '.txt', 'a') as file:
@@ -159,10 +159,10 @@ def detect(cfg,                     # YoloV3
                 label = '%s %.2f' % (classes[int(cls)], conf) # 'person 1.00'
                 if classes[int(cls)] == 'person':
                     #plot_one_bo x(xyxy, im0, label=label, color=colors[int(cls)])
-                    # xmin = int(xyxy[0])
-                    # ymin = int(xyxy[1])
-                    # xmax = int(xyxy[2])
-                    # ymax = int(xyxy[3])
+                    xmin = int(xyxy[0])
+                    ymin = int(xyxy[1])
+                    xmax = int(xyxy[2])
+                    ymax = int(xyxy[3])
                     xmin = xi
                     ymin = yi
                     xmax = xa
