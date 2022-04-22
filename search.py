@@ -130,7 +130,7 @@ def detect(cfg,                     # YoloV3
 
         # Get detection shape: (3, 512, 512)
         img = torch.from_numpy(img).unsqueeze(0).to(device) # torch.Size([1, 3, 512, 512])
-        pred, _ = model(img)
+        pred = model(img)[0]
         det = non_max_suppression(pred.float(), conf_thres, nms_thres)[0] # torch.Size([5, 7])
 
         if det is not None and len(det) > 0:
@@ -149,7 +149,7 @@ def detect(cfg,                     # YoloV3
             count = 0
             gallery_img = []
             gallery_loc = []
-            for *xyxy, conf, cls_conf, cls in det: # 对于最后的预测框进行遍历
+            for xyxy, conf, cls_conf, cls in det: # 对于最后的预测框进行遍历
                 # *xyxy: 对于原图来说的左上角右下角坐标: [tensor(349.), tensor(26.), tensor(468.), tensor(341.)]
                 if save_txt:  # Write to file
                     with open(save_path + '.txt', 'a') as file:
