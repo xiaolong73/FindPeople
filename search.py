@@ -163,15 +163,11 @@ def detect(cfg,                     # YoloV3
                     ymin = int(xyxy[1])
                     xmax = int(xyxy[2])
                     ymax = int(xyxy[3])
-                    # xmin = xi
-                    # ymin = yi
-                    # xmax = xa
-                    # ymax = ya
                     w = xmax - xmin # 233
                     h = ymax - ymin # 602
                     # 如果检测到的行人太小了，感觉意义也不大
                     # 这里需要根据实际情况稍微设置下
-                    if w*h > 500:
+                    if w*h > 900:
                         gallery_loc.append((xmin, ymin, xmax, ymax))
                         crop_img = im0[ymin:ymax, xmin:xmax] # HWC (602, 233, 3)
                         crop_img = Image.fromarray(cv2.cvtColor(crop_img, cv2.COLOR_BGR2RGB))  # PIL: (233, 602)
