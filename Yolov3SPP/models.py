@@ -1,6 +1,10 @@
-from Yolov3SPP.build_utils import torch_utils
-from Yolov3SPP.build_utils.layers import *
-from Yolov3SPP.build_utils.parse_config import *
+import sys
+
+sys.path.append('/root/FindPeople/Yolov3SPP')
+
+from build_utils import torch_utils
+from build_utils.layers import *
+from build_utils.parse_config import *
 
 
 ONNX_EXPORT = False
