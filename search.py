@@ -245,7 +245,7 @@ if __name__ == '__main__':
     parser.add_argument('--img-size', type=int, default=512, help='输入分辨率大小')
     parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
     parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
-    parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')
+    parser.add_argument('--dist_thres', type=float, default=1.3, help='行人图片距离阈值，小于这个距离，就认为是该行人')
     parser.add_argument('--fourcc', type=str, default='mp4v',
                             help='fourcc output video codec'
                                  ' (verify ffmpeg support)')
