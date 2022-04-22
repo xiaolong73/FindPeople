@@ -13,11 +13,11 @@ import torch
 from torch.backends import cudnn
 
 sys.path.append('.')
-from config import cfg
-from data import make_data_loader
-from engine.inference import inference
-from modeling import build_model
-from utils.logger import setup_logger
+from ..config import cfg
+from ..data import make_data_loader
+from ..engine.inference import inference
+from ..modeling import build_model
+from ..utils.logger import setup_logger
 
 
 def main():
