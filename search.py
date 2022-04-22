@@ -59,7 +59,7 @@ def detect(cfg,                     # YoloV3
            nms_thres=0.5,
            dist_thres=1.0,
            save_txt=False,
-           save_img=True):
+           save_images=True):
 
     # Initialize
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
