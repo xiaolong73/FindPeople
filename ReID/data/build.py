@@ -11,7 +11,7 @@ from .datasets import init_dataset, ImageDataset
 from .samplers import RandomIdentitySampler, RandomIdentitySampler_alignedreid  # New add by gu
 from .transforms import build_transforms
 from .datasets import Market1501
-
+from .datasets import Market1501_test
 
 def make_data_loader(cfg):
     train_transforms = build_transforms(cfg, is_train=True)
@@ -49,7 +49,7 @@ def make_data_loader_test(cfg):
     # 验证集的预处理
     val_transforms = build_transforms(cfg)
     num_workers = cfg.DATALOADER.NUM_WORKERS # 加载图像进程数 8
-    dataset = Market1501(root=cfg.DATASETS.ROOT_DIR)
+    dataset = Market1501_test(root=cfg.DATASETS.ROOT_DIR)
 
     val_set = ImageDataset(dataset.query, val_transforms)
     val_loader = DataLoader(
