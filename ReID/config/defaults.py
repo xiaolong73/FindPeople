@@ -71,6 +71,8 @@ _C.DATASETS = CN()
 _C.DATASETS.NAMES = ('market1501')
 # Root directory where datasets should be used (and downloaded if not found)
 _C.DATASETS.ROOT_DIR = ('/root/FindPeople/ReID/data')
+# Root directory where datasets should be used (and downloaded if not found)
+_C.DATASETS.ROOT_DIR_QUERY = ('/root/FindPeople/query')
 
 # -----------------------------------------------------------------------------
 # DataLoader

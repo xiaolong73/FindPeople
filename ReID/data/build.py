@@ -49,7 +49,7 @@ def make_data_loader_test(cfg):
     # 验证集的预处理
     val_transforms = build_transforms(cfg)
     num_workers = cfg.DATALOADER.NUM_WORKERS # 加载图像进程数 8
-    dataset = Market1501_test(root=cfg.DATASETS.ROOT_DIR)
+    dataset = Market1501_test(root=cfg.DATASETS.ROOT_DIR_QUERY)
 
     val_set = ImageDataset(dataset.query, val_transforms)
     val_loader = DataLoader(
