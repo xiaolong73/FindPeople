@@ -70,7 +70,7 @@ def detect(cfg,                     # YoloV3
 
     ############# 行人重识别模型初始化 #############
     query_loader, num_query = make_data_loader_test(reidCfg)
-    reidModel = build_model(reidCfg, num_classes = 1501)
+    reidModel = build_model(reidCfg, num_classes = 751)
     reidModel.load_param(reidCfg.TEST.WEIGHT)
     reidModel.to(device).eval()
 
@@ -242,7 +242,7 @@ if __name__ == '__main__':
     parser.add_argument('--weights', type=str, default='/root/FindPeople/weights/yolov3spp-voc-512.pt', help='模型权重文件路径')
     parser.add_argument('--images', type=str, default='/root/FindPeople/data/samples', help='需要进行检测的图片文件夹')
     parser.add_argument('-q', '--query', default='/root/FindPeople/query', help='查询图片的读取路径.')
-    parser.add_argument('--img-size', type=int, default=416, help='输入分辨率大小')
+    parser.add_argument('--img-size', type=int, default=512, help='输入分辨率大小')
     parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
     parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
     parser.add_argument('--dist_thres', type=float, default=1.0, help='行人图片距离阈值，小于这个距离，就认为是该行人')

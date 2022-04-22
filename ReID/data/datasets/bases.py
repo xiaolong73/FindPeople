@@ -62,6 +62,20 @@ class BaseImageDataset(BaseDataset):
         print("  gallery  | {:5d} | {:8d} | {:9d}".format(num_gallery_pids, num_gallery_imgs, num_gallery_cams))
         print("  ----------------------------------------")
 
+class BaseImageDataset_test(BaseDataset):
+    """
+    Base class of image reid dataset
+    """
+
+    def print_dataset_statistics_test(self, query):
+        num_query_pids, num_query_imgs, num_query_cams = self.get_imagedata_info(query)
+
+        print("Dataset statistics:")
+        print("  ----------------------------------------")
+        print("  subset   | # ids | # images | # cameras")
+        print("  ----------------------------------------")
+        print("  query    | {:5d} | {:8d} | {:9d}".format(num_query_pids, num_query_imgs, num_query_cams))
+        print("  ----------------------------------------")
 
 class BaseVideoDataset(BaseDataset):
     """

@@ -10,9 +10,9 @@ import re
 import os.path as osp
 
 from .bases import BaseImageDataset
+from .bases import BaseImageDataset_test
 
-
-class Market1501(BaseImageDataset):
+class Market1501(BaseImageDataset, BaseImageDataset_test):
     """
     Market1501
     Reference:
@@ -107,7 +107,7 @@ class Market1501_test(BaseImageDataset):
 
         query = self._process_dir(self.query_dir, relabel=False)  # 对查询集进行预处理
         if verbose:
-            self.print_dataset_statistics(query)
+            self.print_dataset_statistics_test(query)
         self.query = query
 
         self.num_query_pids, self.num_query_imgs, self.num_query_cams = self.get_imagedata_info(
