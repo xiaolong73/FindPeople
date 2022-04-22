@@ -12,7 +12,7 @@ from Yolov3SPP.build_utils.datasets import *
 from Yolov3SPP.build_utils.utils import *
 
 # For ReID
-from ReID.data import make_data_loader
+from ReID.data import make_data_loader_test
 from ReID.data.transforms import build_transforms
 from ReID.modeling import build_model
 from ReID.config import cfg as reidCfg
