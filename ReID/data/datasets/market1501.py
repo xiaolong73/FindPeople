@@ -12,7 +12,7 @@ import os.path as osp
 from .bases import BaseImageDataset
 from .bases import BaseImageDataset_test
 
-class Market1501(BaseImageDataset, BaseImageDataset_test):
+class Market1501(BaseImageDataset):
     """
     Market1501
     Reference:
@@ -85,7 +85,7 @@ class Market1501(BaseImageDataset, BaseImageDataset_test):
         return dataset
 
 
-class Market1501_test(BaseImageDataset):
+class Market1501_test(BaseImageDataset_test):
     """
     Market1501
     命名规则：
