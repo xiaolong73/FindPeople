@@ -69,7 +69,7 @@ def detect(cfg,                     # YoloV3
     os.makedirs(output)  # make new output folder
 
     ############# 行人重识别模型初始化 #############
-    _, query_loader, num_query, num_classes = make_data_loader(reidCfg)
+    _, query_loader, num_query, num_classes = make_data_loader_test(reidCfg)
     reidModel = build_model(reidCfg, num_classes)
     reidModel.load_param(reidCfg.TEST.WEIGHT)
     reidModel.to(device).eval()
