@@ -167,7 +167,7 @@ def detect(cfg,                     # YoloV3
                     h = ymax - ymin # 602
                     # 如果检测到的行人太小了，感觉意义也不大
                     # 这里需要根据实际情况稍微设置下
-                    if w*h >200:
+                    if w*h >300:
                         gallery_loc.append((xmin, ymin, xmax, ymax))
                         crop_img = im0[ymin:ymax, xmin:xmax] # HWC (602, 233, 3)
                         crop_img = Image.fromarray(cv2.cvtColor(crop_img, cv2.COLOR_BGR2RGB))  # PIL: (233, 602)
@@ -245,7 +245,7 @@ if __name__ == '__main__':
     parser.add_argument('--img-size', type=int, default=512, help='输入分辨率大小')
     parser.add_argument('--conf-thres', type=float, default=0.1, help='物体置信度阈值')
     parser.add_argument('--nms-thres', type=float, default=0.4, help='NMS阈值')
-    parser.add_argument('--dist_thres', type=float, default=1.3, help='行人图片距离阈值，小于这个距离，就认为是该行人')
+    parser.add_argument('--dist_thres', type=float, default=0.8, help='行人图片距离阈值，小于这个距离，就认为是该行人')
     parser.add_argument('--fourcc', type=str, default='mp4v',
                             help='fourcc output video codec'
                                  ' (verify ffmpeg support)')
